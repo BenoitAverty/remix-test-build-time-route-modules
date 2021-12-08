@@ -48,7 +48,7 @@ module.exports = {
 
 and have this in the route-template.tsx file : 
 
-```javascript
+```typescript jsx
 import {json, Link, LoaderFunction, useLoaderData} from "remix";
 
 // Almost normal route module
@@ -79,7 +79,7 @@ and it should work.
 Currently, if you want similar behaviours at different urls you have two solutions : 
 
  - Extract the common logic in functions and components and wire them in different route modules (that limits what you can extract and it's a little verbose)
- - Have a single route module that match several urls (but you're restricted on what URLs you use, and the logic to infer parameters based on the url can get complicated)
+ - Have a single route module that match several urls (but you're restricted on what URLs you use, and the logic to infer options based on the url can get complicated)
 
 What I propose gives a third option that I think is better in some cases
 
@@ -106,9 +106,6 @@ Take a look at the `blog-route-package` folder and imagine it's a package publis
 
 const {registerBlog} = require("blog-route-package/register");
 
-/**
- * @type {import('@remix-run/dev/config').AppConfig}
- */
 module.exports = {
     async routes(defineRoutes) {
         return defineRoutes(route => {
